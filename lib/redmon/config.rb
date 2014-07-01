@@ -9,14 +9,14 @@ module Redmon
 
   class Config
     DEFAULTS = {
-      :namespace     => 'redmon',
-      :redis_url     => 'redis://127.0.0.1:6379',
+      :namespace     => (ENV['REDMON_NAMESPACE'] || 'redmon'),
+      :redis_url     => (ENV['REDMON_REDIS_URL'] || 'redis://127.0.0.1:6379'),
       :app           => true,
       :worker        => true,
       :web_interface => ['0.0.0.0', 4567],
       :poll_interval => 10,
       :data_lifespan => 30,
-      :secure        => false
+      :secure        => (ENV['REDMON_SECURE'] || false)
     }
 
     attr_accessor(*DEFAULTS.keys)
